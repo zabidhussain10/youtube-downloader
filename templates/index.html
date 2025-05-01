@@ -2,31 +2,12 @@
 <html>
 <head>
     <title>YouTube Downloader</title>
-    <style>
-        body { font-family: Arial; background: #f4f4f4; padding: 40px; text-align: center; }
-        input[type="text"] { width: 60%; padding: 10px; }
-        input[type="submit"] { padding: 10px 20px; background: green; color: white; border: none; cursor: pointer; }
-        .message { margin-top: 20px; }
-    </style>
 </head>
 <body>
-    <h1>🎬 YouTube Video Downloader</h1>
-    <form method="post" action="/download">
-        <input type="text" name="url" placeholder="Enter YouTube Video URL" required>
-        <input type="submit" value="Download">
+    <h1>Download YouTube Video</h1>
+    <form method="POST" action="/download">
+        <input type="text" name="url" placeholder="Paste YouTube video URL" required>
+        <button type="submit">Download</button>
     </form>
-
-    {% if success %}
-    <div class="message">
-        <p><strong>✅ {{ title }}</strong> downloaded successfully!</p>
-        <a href="{{ download_url }}" download>Click here to download the video</a>
-    </div>
-    {% endif %}
-
-    {% if error %}
-    <div class="message" style="color: red;">
-        <p>❌ Error: {{ error }}</p>
-    </div>
-    {% endif %}
 </body>
 </html>

@@ -1,2 +1,7 @@
-Flask==2.2.5
-pytube==15.0.0
+flask
+pytube
+gunicorn
+
+
+
+
