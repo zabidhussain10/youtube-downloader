@@ -1,5 +1,6 @@
 ﻿from flask import Flask, render_template, request, send_file
 from pytube import YouTube
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -12,8 +13,17 @@ def download():
     url = request.form['url']
     yt = YouTube(url)
     stream = yt.streams.get_highest_resolution()
-    stream.download(filename='video.mp4')
-    return send_file('video.mp4', as_attachment=True)
+    
+    buffer = BytesIO()
+    stream.stream_to_buffer(buffer)
+    buffer.seek(0)
+    
+    return send_file(
+        buffer,
+        as_attachment=True,
+        download_name='video.mp4',
+        mimetype='video/mp4'
+    )
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
